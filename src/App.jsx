@@ -17,7 +17,7 @@ export const App = () => {
           ...messages,
           {
             author: AUTHOR.BOT,
-            value: `I'm BOT`,
+            value: "I'm BOT",
           },
         ]);
       }, 1000);

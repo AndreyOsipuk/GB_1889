@@ -42,14 +42,14 @@ describe('Button', () => {
   //   expect(screen.getByText('click')).toHaveStyle({ backgroundColor: 'red' });
   // });
 
-  // it('button click with userEvent', () => {
-  //   const mockHandler = jest.fn();
+  it('button click with userEvent', async () => {
+    const mockHandler = jest.fn();
 
-  //   render(<Button onButtonClick={mockHandler} />);
-  //   userEvent.click(screen.getByText(/click/));
-
-  //   expect(mockHandler).toBeCalledTimes(1);
-  // });
+    render(<Button onButtonClick={mockHandler} />);
+    userEvent.click(screen.getByText(/click/));
+    expect(mockHandler).toBeCalledTimes(1);
+    // await waitFor(() => expect(mockHandler).toBeCalledTimes(1));
+  });
 
   it('button async click', async () => {
     const mockHandler = jest.fn();
@@ -60,5 +60,14 @@ describe('Button', () => {
     await waitFor(() => expect(mockHandler).toHaveBeenCalledTimes(1), {
       timeout: 1100,
     });
+  });
+
+  it('test', () => {
+    const onChange = jest.fn();
+    render(<input type="checkbox" onChange={onChange} />);
+    const checkbox = screen.getByRole('checkbox');
+    userEvent.dblClick(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(checkbox).not.toBeChecked();
   });
 });

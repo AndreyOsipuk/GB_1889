@@ -35,7 +35,7 @@
     "@storybook/testing-library": "^0.0.9",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.1.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
     "css-loader": "^6.7.1",

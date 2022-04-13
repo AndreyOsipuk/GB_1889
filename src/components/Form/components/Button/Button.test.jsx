@@ -46,27 +46,26 @@ describe('Button', () => {
     const mockHandler = jest.fn();
 
     render(<Button onButtonClick={mockHandler} />);
-    userEvent.click(screen.getByText(/click/));
+    await userEvent.click(screen.getByText(/click/));
     expect(mockHandler).toBeCalledTimes(1);
-    // await waitFor(() => expect(mockHandler).toBeCalledTimes(1));
   });
 
   it('button async click', async () => {
     const mockHandler = jest.fn();
     render(<Button onButtonClick={() => setTimeout(mockHandler, 1000)} />);
 
-    userEvent.click(screen.getByText(/click/));
+    await userEvent.click(screen.getByText(/click/));
 
     await waitFor(() => expect(mockHandler).toHaveBeenCalledTimes(1), {
       timeout: 1100,
     });
   });
 
-  it('test', () => {
+  it('test exapmle', async () => {
     const onChange = jest.fn();
     render(<input type="checkbox" onChange={onChange} />);
     const checkbox = screen.getByRole('checkbox');
-    userEvent.dblClick(checkbox);
+    await userEvent.dblClick(checkbox);
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(checkbox).not.toBeChecked();
   });

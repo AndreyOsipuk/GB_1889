@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 // import { Button as ButtonUI } from '@mui/material';
-// import './Button.scss';
+import style from './Button.module.scss';
 
 interface ButtonProps {
   disabled: boolean;
@@ -13,6 +13,7 @@ export const Button: FC<ButtonProps> = ({ disabled, onButtonClick }) => (
     type="submit"
     disabled={disabled}
     onClick={onButtonClick}
+    className={style.button}
   >
     click
   </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, memo } from 'react';
+import React, { useState, FC, memo } from 'react';
 import { Input } from '@mui/material';
 import { Button } from './components/Button';
 // import cat from './assets/cat.jpeg';
@@ -9,10 +9,6 @@ interface FormProps {
 
 export const Form: FC<FormProps> = memo(({ addMessage }) => {
   const [value, setValue] = useState('');
-
-  useEffect(() => {
-    console.log('change props');
-  }, [addMessage]);
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

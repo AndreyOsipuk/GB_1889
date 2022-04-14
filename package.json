@@ -7,7 +7,7 @@
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "report": "npm run build --withReport true",
-    "lint": "npx tsc --noEmit && npx eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
     "deploy:web": "npm run build && gh-pages -d build",
     "deploy:storybook": "npm run build-storybook && gh-pages -d storybook-static",
     "deploy:coverage": "npm run test:coverage && gh-pages -d coverage/lcov-report",
@@ -85,13 +85,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
-    "*.{js.jsx,ts,tsx,json,html,css,scss,sass}": [
-      "npm run test",
+    "*.{js,jsx,ts,tsx,html,css,scss,sass}": [
       "npm run lint"
     ]
   },

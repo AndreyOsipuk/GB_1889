@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { FC, useState, useEffect, useCallback } from 'react';
+import { nanoid } from 'nanoid';
+
 import { Form } from './components/Form/Form';
 import { MessageList } from './components/MessageList';
 import { AUTHOR } from './constants';
 
-export const App = () => {
-  const [messages, setMessages] = useState([]);
+import './App.scss';
+
+interface Message {
+  id: string;
+  author: string;
+  value: string;
+}
+
+export const App: FC = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     if (
@@ -16,8 +25,9 @@ export const App = () => {
         setMessages([
           ...messages,
           {
+            id: nanoid(),
             author: AUTHOR.BOT,
-            value: "I'm BOT",
+            value: 'Im BOT',
           },
         ]);
       }, 1000);
@@ -28,15 +38,16 @@ export const App = () => {
     }
   }, [messages]);
 
-  const addMessage = (value) => {
-    setMessages([
-      ...messages,
+  const addMessage = useCallback((value: string) => {
+    setMessages((prevMessage) => [
+      ...prevMessage,
       {
+        id: nanoid(),
         author: AUTHOR.USER,
         value,
       },
     ]);
-  };
+  }, []);
 
   return (
     <>

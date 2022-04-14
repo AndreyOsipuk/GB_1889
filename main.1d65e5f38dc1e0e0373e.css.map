@@ -1,1 +1,0 @@
-{"version":3,"file":"main.1d65e5f38dc1e0e0373e.css","mappings":"AAAA","sources":["webpack://cra-test/./src/components/Form/components/Button/Button.module.scss"],"sourcesContent":[".button {\n  background-color: #ccc;\n}"],"names":[],"sourceRoot":""}

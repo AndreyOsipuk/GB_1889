@@ -13,7 +13,7 @@
     "deploy:coverage": "npm run test:coverage && gh-pages -d coverage/lcov-report",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest && loki:test",
+    "test": "jest && npm run loki:test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
     "loki:update": "npm run build-storybook && loki update --requireReference --reactUri file:./storybook-static",

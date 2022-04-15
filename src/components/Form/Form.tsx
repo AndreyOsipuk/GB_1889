@@ -1,7 +1,6 @@
 import React, { useState, FC, memo } from 'react';
 import { Input } from '@mui/material';
 import { Button } from './components/Button';
-// import cat from './assets/cat.jpeg';
 
 interface FormProps {
   addMessage: (a: string) => void;
@@ -18,7 +17,6 @@ export const Form: FC<FormProps> = memo(({ addMessage }) => {
 
   return (
     <form onSubmit={handleSubmitForm}>
-      {/* <img src={cat} /> */}
       <Input
         type="text"
         value={value}

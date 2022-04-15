@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://andreyosipuk.github.io/GB_1889/",
   "scripts": {
-    "start": "webpack serve --mode=development",
+    "start": "webpack serve --mode=development --open",
     "build": "webpack --mode=production",
     "report": "npm run build --withReport true",
     "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",

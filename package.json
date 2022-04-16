@@ -18,7 +18,8 @@
     "test:coverage": "jest --coverage --colors",
     "loki:update": "npm run build-storybook && loki update --requireReference --reactUri file:./storybook-static",
     "loki:approve": "loki approve",
-    "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static"
+    "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static",
+    "chromatic": "npx chromatic --project-token=85d9ef568377"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -55,6 +56,7 @@
     "@typescript-eslint/parser": "^5.19.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "chromatic": "^6.5.4",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "eslint": "^8.12.0",

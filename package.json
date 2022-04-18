@@ -93,7 +93,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,css,scss,sass}": [
+    "*.{js,jsx,ts,tsx,css,scss,sass}": [
       "npm run lint"
     ]
   },

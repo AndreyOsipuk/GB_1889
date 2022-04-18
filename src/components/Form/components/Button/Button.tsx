@@ -5,6 +5,7 @@ import style from './Button.module.scss';
 interface ButtonProps {
   disabled: boolean;
   onButtonClick?: () => void;
+  children?: React.ReactNode;
 }
 
 export const Button: FC<ButtonProps> = ({ disabled, onButtonClick }) => (

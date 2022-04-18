@@ -32,6 +32,7 @@ module.exports = {
     client: {
       logging: 'info',
     },
+    historyApiFallback: true,
   },
   module: {
     rules: [

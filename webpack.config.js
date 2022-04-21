@@ -21,6 +21,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.jsx', '.js', '.tsx', '.ts'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      src: path.resolve(__dirname, 'src'),
+    },
   },
   devtool:
     process.env.NODE_ENV === 'production'

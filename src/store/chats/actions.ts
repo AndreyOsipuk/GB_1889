@@ -1,4 +1,8 @@
-import { AddChat, AddMessage, DeleteChat } from './types';
+import { AddChat, AddMessage, DeleteChat, Message } from './types';
+import { Action, AnyAction, Dispatch } from 'redux';
+import { AUTHOR } from 'src/constants';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { ChatsState } from './reducer';
 
 export const ADD_CHAT = 'CHATS::ADD_CHAT';
 export const DELETE_CHAT = 'CHATS::DELETE_CHAT';
@@ -19,3 +23,26 @@ export const addMessage: AddMessage = (chatId, message) => ({
   chatId,
   message,
 });
+
+let timeout: NodeJS.Timeout;
+
+export const addMessageWithReply =
+  (chatId: string, message: Message): any =>
+  (dispatch: Dispatch) => {
+    dispatch(addMessage(chatId, message));
+
+    if (message.author !== AUTHOR.BOT) {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      timeout = setTimeout(() => {
+        dispatch(
+          addMessage(chatId, {
+            text: 'Im BOT',
+            author: AUTHOR.BOT,
+          })
+        );
+      }, 1000);
+    }
+  };

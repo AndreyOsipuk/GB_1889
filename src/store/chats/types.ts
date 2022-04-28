@@ -1,5 +1,4 @@
 import { ADD_CHAT, ADD_MESSAGE, DELETE_CHAT } from './actions';
-import { Dispatch } from 'redux';
 
 export type ChatsActions =
   | ReturnType<AddChat>
@@ -33,8 +32,3 @@ export type AddMessage = (
   chatId: string;
   message: Message;
 };
-
-// export type AddMessageWithReply = (
-//   chatId: string,
-//   message: Message
-// ) => (dispatch: Dispatch) : void

@@ -1,6 +1,6 @@
 import { ADD_CHAT, DELETE_CHAT, ADD_MESSAGE } from './actions';
 import { Reducer } from 'redux';
-import { ChatsActions, Message, MessageState } from './types';
+import { ChatsActions, MessageState } from './types';
 import { nanoid } from 'nanoid';
 import { AUTHOR } from 'src/constants';
 

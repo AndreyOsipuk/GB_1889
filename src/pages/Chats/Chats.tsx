@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
-import { MessageList } from '../../components/MessageList/MessageList';
-import { Form } from '../../components/Form/Form';
-import { ChatList } from '../../components/ChatList';
 import { Navigate, useParams } from 'react-router-dom';
+import React, { FC } from 'react';
+import { shallowEqual, useSelector } from 'react-redux';
+
+import { ChatList } from '../../components/ChatList';
+import { Form } from '../../components/Form/Form';
+import { MessageList } from '../../components/MessageList/MessageList';
 import { WithClasses } from 'src/HOC/WithClasses';
+import { selectChatList, selectChats } from 'src/store/chats/selectors';
 
 import style from './Chats.module.css';
-import { shallowEqual, useSelector } from 'react-redux';
-import { selectChatList, selectChats } from 'src/store/chats/selectors';
 
 export const Chats: FC = () => {
   const { chatId } = useParams();
@@ -33,3 +34,5 @@ export const Chats: FC = () => {
     </>
   );
 };
+
+export default Chats;

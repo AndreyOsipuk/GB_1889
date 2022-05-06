@@ -1,5 +1,5 @@
-import React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
+import React from 'react';
 
 import { App } from './App';
 

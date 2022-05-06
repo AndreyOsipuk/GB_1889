@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { MessageItem, Message } from './components/MessageItem';
+
+import { Message, MessageItem } from './components/MessageItem';
 
 interface MessageListProps {
   messages: Message[];

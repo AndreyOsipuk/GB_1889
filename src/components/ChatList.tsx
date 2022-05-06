@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '@mui/material';
+import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addChat, deleteChat } from 'src/store/chats/actions';
+
 import { selectChatList } from 'src/store/chats/selectors';
+import { addChat, deleteChat } from 'src/store/chats/actions';
 
 export const ChatList: FC = () => {
   const [name, setName] = useState('');

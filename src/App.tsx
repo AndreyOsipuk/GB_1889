@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
-import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import React, { FC, useState } from 'react';
 
 import { AppRouter } from './components/AppRouter';
 import { ThemeContext, defaultContext } from './utils/ThemeContext';

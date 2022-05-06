@@ -1,17 +1,20 @@
-import React, { FC, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { FC, Suspense } from 'react';
 
 import { AboutWithConnect } from 'src/pages/About';
 // import { Chats } from 'src/pages/Chats/Chats';
-import { Home } from 'src/pages/Home';
-import { Profile } from 'src/pages/Profile';
 import { ChatList } from './ChatList';
 import { Header } from './Header';
+import { Home } from 'src/pages/Home';
+import { Profile } from 'src/pages/Profile';
 
 const Chats = React.lazy(() =>
-  import('src/pages/Chats/Chats').then((module) => ({
-    default: module.Chats,
-  }))
+  Promise.all([
+    import('src/pages/Chats/Chats').then(({ Chats }) => ({
+      default: Chats,
+    })),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports)
 );
 
 export const AppRouter: FC = () => (

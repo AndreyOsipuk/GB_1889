@@ -1,26 +1,26 @@
+import { NavLink, Outlet } from 'react-router-dom';
 import React, { FC } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
 
 const navigate = [
   {
     id: 1,
-    to: '/',
     name: 'Home',
+    to: '/',
   },
   {
     id: 2,
-    to: '/profile',
     name: 'Profile',
+    to: '/profile',
   },
   {
     id: 3,
-    to: '/chats',
     name: 'Chats',
+    to: '/chats',
   },
   {
     id: 4,
-    to: '/about',
     name: 'About',
+    to: '/about',
   },
 ];
 

@@ -17,4 +17,4 @@ jobs:
           npm run lint
       - name: Lint check
         run: |
-          npm run jest
+          npm run test

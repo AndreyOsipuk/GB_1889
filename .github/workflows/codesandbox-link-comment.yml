@@ -14,6 +14,7 @@ jobs:
     steps:
       - uses: mshick/add-pr-comment@v1
         env:
+        # Create personal token and add to secrets
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         with:
           message: |

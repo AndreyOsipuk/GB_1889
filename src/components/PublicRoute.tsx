@@ -6,12 +6,12 @@ import { selectAuth } from 'store/profile/selectors';
 
 interface IPublicRoute {
   restricted?: boolean;
-  children?: JSX.Element;
+  component?: JSX.Element;
 }
 
 export const PublicRoute: FC<IPublicRoute> = ({
   restricted = true,
-  children,
+  component,
 }) => {
   const isAuth = useSelector(selectAuth);
 
@@ -19,5 +19,5 @@ export const PublicRoute: FC<IPublicRoute> = ({
     return <Navigate to="/" replace />;
   }
 
-  return children ? children : <Outlet />;
+  return component ? component : <Outlet />;
 };

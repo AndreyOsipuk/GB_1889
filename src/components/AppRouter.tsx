@@ -32,30 +32,12 @@ export const AppRouter: FC = () => (
           <Route index element={<Home />} />
           <Route
             path="profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
+            element={<PrivateRoute component={<Profile />} />}
           />
 
-          <Route path="chats">
-            <Route
-              index
-              element={
-                <PrivateRoute>
-                  <ChatList />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path=":chatId"
-              element={
-                <PrivateRoute>
-                  <Chats />
-                </PrivateRoute>
-              }
-            />
+          <Route path="chats" element={<PrivateRoute />}>
+            <Route index element={<ChatList />} />
+            <Route path=":chatId" element={<Chats />} />
           </Route>
 
           <Route path="about" element={<AboutWithConnect />} />
@@ -63,11 +45,7 @@ export const AppRouter: FC = () => (
 
           <Route
             path="signin"
-            element={
-              <PublicRoute>
-                <SignIn />
-              </PublicRoute>
-            }
+            element={<PublicRoute component={<SignIn />} />}
           />
           <Route path="signup" element={<SignUp />} />
         </Route>

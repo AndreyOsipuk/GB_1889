@@ -3,9 +3,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export interface ProfileState {
   visible: boolean;
   name: string;
+  auth: boolean;
 }
 
 const initialState: ProfileState = {
+  auth: false,
   name: 'default name',
   visible: true,
 };
@@ -14,6 +16,9 @@ const profileSlice = createSlice({
   initialState,
   name: 'profile',
   reducers: {
+    changeAuth: (state, action: PayloadAction<boolean>) => {
+      state.auth = action.payload;
+    },
     changeName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
@@ -23,5 +28,5 @@ const profileSlice = createSlice({
   },
 });
 
-export const { toggleProfile, changeName } = profileSlice.actions;
+export const { changeAuth, toggleProfile, changeName } = profileSlice.actions;
 export const profileReducer = profileSlice.reducer;

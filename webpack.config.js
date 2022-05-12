@@ -110,6 +110,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
       src: path.resolve(__dirname, 'src'),
+      store: path.resolve(__dirname, 'src/store'),
+      svg: path.resolve(__dirname, 'src/assets/svg'),
     },
     extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },

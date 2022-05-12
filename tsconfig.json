@@ -11,6 +11,12 @@
       "src/*": [
         "./src/*"
       ],
+      "store/*": [
+        "./src/store/*"
+      ],
+      "svg/*": [
+        "./src/assets/svg/*"
+      ],
     },
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */

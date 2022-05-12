@@ -8,7 +8,7 @@ import { AUTHOR } from 'src/constants';
 import { AddMessage } from 'src/store/chats/types';
 import { Button } from './components/Button';
 import { ChatsState } from 'src/store/chats/reducer';
-import { addMessageWithReply } from 'src/store/chats/actions';
+import { addMessageWithReply } from 'src/store/chats/slice';
 
 export const Form: FC = memo(() => {
   const [value, setValue] = useState('');
@@ -21,7 +21,10 @@ export const Form: FC = memo(() => {
 
     if (chatId && value) {
       dispatch(
-        addMessageWithReply(chatId, { author: AUTHOR.USER, text: value })
+        addMessageWithReply({
+          chatId,
+          message: { author: AUTHOR.USER, text: value },
+        })
       );
     }
     setValue('');

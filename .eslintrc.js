@@ -1,9 +1,9 @@
 module.exports = {
   env: {
     browser: true,
-    node: true,
     es6: true,
     jest: true,
+    node: true,
   },
   extends: [
     'prettier',
@@ -16,6 +16,14 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
   ],
+  overrides: [
+    {
+      files: ['webpack.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': ['off'],
+      },
+    },
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -25,24 +33,24 @@ module.exports = {
   },
   plugins: ['react', 'prettier', 'react-hooks', 'jest'],
   rules: {
-    'react/display-name': 'off',
+    'linebreak-style': ['error', 'unix'],
     'prettier/prettier': [
       'error',
       {
         singleQuote: true,
       },
     ],
-    'react/prop-types': 0,
-    'linebreak-style': ['error', 'unix'],
     quotes: ['warn', 'single'],
+    'react/display-name': 'off',
+    'react/prop-types': 0,
     semi: ['warn', 'always'],
-  },
-  overrides: [
-    {
-      files: ['webpack.config.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': ['off'],
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        memberSyntaxSortOrder: ['all', 'single', 'multiple', 'none'],
       },
-    },
-  ],
+    ],
+    'sort-keys': ['error'],
+  },
 };

@@ -23,7 +23,7 @@ export const Profile: FC = () => {
       <hr />
       <div>
         <p>{name}</p>
-        <input type="checkbox" checked={visible} />
+        <input type="checkbox" checked={visible} readOnly />
         <button onClick={() => dispatch(toggleProfile())}>
           change visible
         </button>

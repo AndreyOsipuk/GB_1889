@@ -1,27 +1,32 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface ProfileState {
   visible: boolean;
   name: string;
+  auth: boolean;
 }
 
 const initialState: ProfileState = {
-  visible: true,
+  auth: false,
   name: 'default name',
+  visible: true,
 };
 
 const profileSlice = createSlice({
-  name: 'profile',
   initialState,
+  name: 'profile',
   reducers: {
-    toggleProfile: (state) => {
-      state.visible = !state.visible;
+    changeAuth: (state, action: PayloadAction<boolean>) => {
+      state.auth = action.payload;
     },
     changeName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    toggleProfile: (state) => {
+      state.visible = !state.visible;
+    },
   },
 });
 
-export const { toggleProfile, changeName } = profileSlice.actions;
+export const { changeAuth, toggleProfile, changeName } = profileSlice.actions;
 export const profileReducer = profileSlice.reducer;

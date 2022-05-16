@@ -9,53 +9,38 @@ const isDev = process.env.NODE_ENV === 'development';
 const withReport = process.env.npm_config_withReport;
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  entry: path.resolve(__dirname, './src/index.tsx'),
-  output: {
-    filename: '[name].bundle.[chunkhash].js',
-    clean: true,
-    path: path.resolve(__dirname, './build'),
-    environment: {
-      arrowFunction: false,
+  devServer: {
+    client: {
+      logging: 'info',
     },
-  },
-  resolve: {
-    extensions: ['.jsx', '.js', '.tsx', '.ts'],
-    alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      src: path.resolve(__dirname, 'src'),
-    },
+    compress: true,
+    historyApiFallback: true,
+    port: 8000,
   },
   devtool:
     process.env.NODE_ENV === 'production'
       ? 'hidden-source-map'
       : 'eval-source-map',
-  devServer: {
-    compress: true,
-    port: 8000,
-    client: {
-      logging: 'info',
-    },
-    historyApiFallback: true,
-  },
+  entry: path.resolve(__dirname, './src/index.tsx'),
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
+        test: /\.(j|t)sx?$/,
         use: ['babel-loader'],
       },
       {
-        test: /\.s?css$/i,
         exclude: /\.module\.s?css$/i,
+        test: /\.s?css$/i,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: {
-                mode: 'icss',
                 localIdentName: '[name]___[hash:base64:5]',
+                mode: 'icss',
               },
             },
           },
@@ -70,8 +55,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                mode: 'local',
                 localIdentName: '[name]___[hash:base64:5]',
+                mode: 'local',
               },
             },
           },
@@ -79,25 +64,33 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
         generator: {
           filename: 'static/[hash][ext]',
         },
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.html$/i,
         loader: 'html-loader',
+        test: /\.html$/i,
       },
     ],
   },
   optimization: {
     minimizer: ['...', new CssMinimizerPlugin()],
   },
+  output: {
+    clean: true,
+    environment: {
+      arrowFunction: false,
+    },
+    filename: '[name].bundle.[chunkhash].js',
+    path: path.resolve(__dirname, './build'),
+  },
   performance: {
     hints: false,
-    maxEntrypointSize: 512000,
     maxAssetSize: 512000,
+    maxEntrypointSize: 512000,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -107,10 +100,19 @@ module.exports = {
       ? [new MiniCssExtractPlugin()]
       : [
           new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
             chunkFilename: '[name].[contenthash].css',
+            filename: '[name].[contenthash].css',
           }),
         ]),
     ...(withReport ? new BundleAnalyzerPlugin() : ''),
   ],
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      src: path.resolve(__dirname, 'src'),
+      store: path.resolve(__dirname, 'src/store'),
+      svg: path.resolve(__dirname, 'src/assets/svg'),
+    },
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
+  },
 };

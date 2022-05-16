@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from './Button';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@storybook/testing-library';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
+import { Button } from './Button';
 describe('Button', () => {
   it('render component', () => {
     render(<Button disabled={false} />);

@@ -23,9 +23,9 @@ export const App: FC = () => {
       }}
     >
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <AppRouter />
-        </PersistGate>
+        {/* <PersistGate persistor={persistor}> */}
+        <AppRouter />
+        {/* </PersistGate> */}
       </Provider>
     </ThemeContext.Provider>
   );

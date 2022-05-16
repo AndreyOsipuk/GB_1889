@@ -19,7 +19,7 @@ import { profileReducer } from './profile/slice';
 export type StoreState = ReturnType<typeof rootReducer>;
 
 const persistConfig = {
-  blacklist: [],
+  blacklist: ['profile'],
   key: 'root',
   storage,
 };

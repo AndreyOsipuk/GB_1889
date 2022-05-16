@@ -1,4 +1,6 @@
-import { ADD_CHAT, ADD_MESSAGE, DELETE_CHAT } from './actions';
+const ADD_CHAT = 'CHATS::ADD_CHAT';
+const DELETE_CHAT = 'CHATS::DELETE_CHAT';
+const ADD_MESSAGE = 'CHATS::ADD_MESSAGE';
 
 export type ChatsActions =
   | ReturnType<AddChat>

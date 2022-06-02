@@ -4,41 +4,61 @@
   "private": true,
   "homepage": "https://andreyosipuk.github.io/GB_1889/",
   "scripts": {
-    "start": "webpack serve --mode=development",
+    "start": "webpack serve --mode=development --open",
     "build": "webpack --mode=production",
-    "lint": "npx eslint ./src --ext .js,.jsx --fix",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "report": "npm run build --withReport true",
+    "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
+    "deploy:web": "npm run build && gh-pages -d build",
+    "deploy:storybook": "npm run build-storybook && gh-pages -d storybook-static",
+    "deploy:coverage": "npm run test:coverage && gh-pages -d coverage/lcov-report",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest",
+    "test": "jest && npm run loki:test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
     "loki:update": "npm run build-storybook && loki update --requireReference --reactUri file:./storybook-static",
     "loki:approve": "loki approve",
-    "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static"
+    "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static",
+    "chromatic": "npx chromatic --project-token=85d9ef568377"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.6.1",
+    "prop-types": "^15.8.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@storybook/addon-actions": "^6.4.20",
     "@storybook/addon-essentials": "^6.4.20",
     "@storybook/addon-interactions": "^6.4.20",
     "@storybook/addon-links": "^6.4.20",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
     "@storybook/react": "^6.4.20",
     "@storybook/testing-library": "^0.0.9",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.24",
+    "@types/react": "^18.0.5",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "chromatic": "^6.5.4",
     "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.1.3",
@@ -46,22 +66,35 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-storybook": "^0.5.8",
+    "file-loader": "^6.2.0",
     "gh-pages": "^3.2.3",
+    "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^4.3.8",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "lint-staged": "^12.3.7",
     "loki": "^0.29.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "nanoid": "^3.3.2",
     "prettier": "^2.6.2",
     "style-loader": "^3.3.1",
+    "typescript": "^4.6.3",
     "webpack": "^5.72.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint && npm test"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,html,css,scss,sass}": [
+      "npm run lint"
+    ]
   },
   "loki": {
     "configurations": {

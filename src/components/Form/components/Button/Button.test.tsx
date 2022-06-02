@@ -6,24 +6,24 @@ import userEvent from '@testing-library/user-event';
 import { waitFor } from '@storybook/testing-library';
 describe('Button', () => {
   it('render component', () => {
-    render(<Button />);
+    render(<Button disabled={false} />);
   });
 
   it('render with snapshot', () => {
-    const { asFragment } = render(<Button />);
+    const { asFragment } = render(<Button disabled={false} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render component with text', () => {
-    render(<Button />);
+    render(<Button disabled={false} />);
     expect(screen.getByText(/click/)).toBeInTheDocument();
   });
 
   it('render multiply components', () => {
     render(
       <>
-        <Button />
-        <Button />
+        <Button disabled={false} />
+        <Button disabled={false} />
       </>
     );
 
@@ -45,14 +45,20 @@ describe('Button', () => {
   it('button click with userEvent', async () => {
     const mockHandler = jest.fn();
 
-    render(<Button onButtonClick={mockHandler} />);
+    render(<Button disabled={false} onButtonClick={mockHandler} />);
+
     await userEvent.click(screen.getByText(/click/));
     expect(mockHandler).toBeCalledTimes(1);
   });
 
   it('button async click', async () => {
     const mockHandler = jest.fn();
-    render(<Button onButtonClick={() => setTimeout(mockHandler, 1000)} />);
+    render(
+      <Button
+        disabled={false}
+        onButtonClick={() => setTimeout(mockHandler, 500)}
+      />
+    );
 
     await userEvent.click(screen.getByText(/click/));
 

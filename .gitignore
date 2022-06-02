@@ -2,3 +2,5 @@ node_modules
 build
 coverage
 .loki
+storybook-static
+build-storybook.log

@@ -7,8 +7,13 @@ import { ListItem } from '@mui/material';
 interface ChatListProps {
   chatList: Chat[];
   onAddChat: (chats: Chat) => void;
+  onDeleteChat: (chat: string) => void;
 }
-export const ChatList: FC<ChatListProps> = ({ chatList, onAddChat }) => {
+export const ChatList: FC<ChatListProps> = ({
+  chatList,
+  onAddChat,
+  onDeleteChat,
+}) => {
   const [name, setName] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,6 +35,7 @@ export const ChatList: FC<ChatListProps> = ({ chatList, onAddChat }) => {
         {chatList.map((chat) => (
           <ListItem key={chat.id}>
             <Link to={`/chats/${chat.name}`}>{chat.name}</Link>
+            <button onClick={() => onDeleteChat(chat.name)}>x</button>
           </ListItem>
         ))}
       </ul>

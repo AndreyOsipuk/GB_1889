@@ -75,4 +75,20 @@ describe('Button', () => {
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(checkbox).not.toBeChecked();
   });
+
+  // it('Bot`s response', async () => {
+  //   render(<Form />);
+  //   fireEvent.input(screen.getByPlaceholderText('Введите текст...'), {
+  //     target: { value: 'TestMessage' },
+  //   });
+  //   fireEvent.click(screen.getByTestId('submitbutton'));
+
+  //   //Вариант 1
+  //   expect(await screen.findByText('Chatbot')).toBeInTheDocument();
+
+  //   //Вариант 2
+  //   await waitFor(() =>
+  //     expect(screen.getByText('Chatbot')).toBeInTheDocument()
+  //   );
+  // });
 });
